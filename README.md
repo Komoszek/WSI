@@ -1,5 +1,5 @@
-# WSI
-This project is a semestral project for WSI course at MiNI faculty at WUT.
+# RuleFinder
+This application is a semestral project for WSI course at MiNI faculty at WUT.
 
 ## Installation
 To install all dependencies go to main directory and run:
