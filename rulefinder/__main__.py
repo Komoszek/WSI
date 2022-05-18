@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
             QPushButton, QFileDialog, QTableWidget, QTableWidgetItem, QHeaderView,
             QLabel, QListWidget)
 from PyQt6.QtCore import Qt
-from .helpers import readCSVFile, getRules, PatientsTableData
+from helpers import readCSVFile, getRules, PatientsTableData
 
 APPLICATION_NAME = 'Rule Finder'
 
