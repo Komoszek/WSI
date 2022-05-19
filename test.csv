@@ -1,6 +1,21 @@
-bol brzucha,bol gardla,bol glowy,bol miesni,bol stawow,bol w klatce piersiowej,dreszcze,dusznosci,goraczka,kaszel,niezyt nosa,nudnosci,obrzek konczyn,zaburzenia nastroju,zgaga,zmeczenie,nagla zmiana masy ciala,chory?
-False,True,True,False,True,False,False,False,True,True,False,False,False,False,False,True,False,True
-False,True,True,True,True,False,True,False,True,True,True,False,False,True,False,True,False,True
-False,True,True,False,True,False,False,False,True,True,False,False,False,False,False,True,False,False
-False,False,True,True,True,False,True,False,True,True,True,False,False,False,False,True,False,True
-False,True,True,True,True,False,True,False,True,True,True,False,False,False,False,True,False,True
+biegunka,bol brzucha,bol gardla,bol glowy,bol miesni,bol stawow,bol w klatce piersiowej,dusznosci,goraczka,kaszel,nudnosci,obrzek konczyn,zaburzenia nastroju,zgaga,zmeczenie,nagla zmiana masy ciala,zmiany skorne,choroba internistyczna?
+False,True,False,True,False,True,False,True,True,False,False,False,False,False,True,False,True,True
+False,False,False,False,False,True,False,False,False,False,False,True,False,False,True,False,False,True
+True,True,False,False,False,False,False,False,True,False,False,True,False,True,True,True,True,False
+False,False,False,False,True,False,True,True,False,True,False,False,True,True,False,False,False,True
+False,False,False,False,True,False,True,True,False,True,False,False,True,True,False,False,False,True
+False,False,False,False,False,False,True,False,False,True,False,True,False,False,True,False,False,True
+True,True,True,False,False,False,True,False,False,False,True,False,False,True,False,True,False,True
+True,False,False,False,True,False,False,True,False,False,False,False,True,False,True,True,False,True
+True,False,False,False,True,False,False,True,False,False,False,False,True,False,True,True,False,True
+True,True,False,False,False,False,False,False,True,False,False,False,False,True,True,True,True,False
+False,False,True,False,False,False,False,False,True,True,False,False,False,False,True,False,False,True
+True,True,False,False,False,False,False,False,True,False,False,False,False,True,True,True,True,False
+False,False,False,True,False,False,True,True,False,True,False,False,True,True,False,False,False,True
+False,True,False,False,False,False,True,False,False,False,True,False,False,True,False,True,False,False
+False,True,False,False,False,False,False,True,False,True,False,False,False,False,False,False,True,False
+False,False,False,False,False,False,False,False,False,False,True,False,True,False,True,True,False,False
+True,False,False,False,False,False,False,True,True,False,False,False,True,False,True,True,False,True
+False,False,False,False,False,False,False,False,False,False,True,False,True,False,True,True,False,False
+False,False,False,False,True,False,False,True,False,False,False,True,False,False,True,False,False,True
+False,False,True,True,False,True,True,False,True,True,False,False,False,False,True,True,False,True
