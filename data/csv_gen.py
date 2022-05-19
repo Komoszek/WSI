@@ -19,12 +19,12 @@ class Disease:
         return row
 
 def makeCSVFile(path, rowsNumber, delimiter=','):
-    with open(path, 'w', newline='\n') as csvfile:
+    with open(path, 'w', newline='\n', encoding="utf-8") as csvfile:
         writer = csv.writer(csvfile, delimiter=delimiter)
-        header = ["biegunka", "bol brzucha", "bol gardla", "bol glowy", "bol miesni", "bol stawow", 
-        "bol w klatce piersiowej", "dusznosci", "goraczka", "kaszel", 
-        "nudnosci", "obrzek konczyn", "zaburzenia nastroju", "zgaga", 
-        "zmeczenie", "nagla zmiana masy ciala", "zmiany skorne", "choroba internistyczna?"]
+        header = ["biegunka", "ból brzucha", "ból gardła", "ból głowy", "ból mięśni", 
+        "ból stawów", "ból w klatce piersiowej", "duszności", "gorączka", "kaszel", 
+        "nudności", "obrzęk kończyn", "zaburzenia nastroju", "zgaga", "zmęczenie", 
+        "nagła zmiana masy ciała", "zmiany skórne", "choroba internistyczna?"]
         writer.writerow(header)
 
         grypa = Disease(False, False, True, True, True, True, False, False, True,
@@ -43,7 +43,7 @@ def makeCSVFile(path, rowsNumber, delimiter=','):
             False, True, False, False, False, True, True, True, True)
         reumatyzm = Disease(False, False, False, False, False, True, False, False, False, 
             False, False, True, False, False, False, False, False, True)
-        # inne chroby
+        # inne chroby (żeby czasem były falsy)
         choroby_psychiczne = Disease(False, False, False, False, False, False, False, False, 
             False, False, True, False, True, False, True, True, False, False)
         alergie = Disease(False, True, False, False, False, False, False, True, False, True, 

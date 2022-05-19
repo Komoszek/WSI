@@ -1,4 +1,5 @@
 import csv
+import numpy as np
 
 class PatientsTableData:
     def __init__(self, header=None, data=None):
@@ -14,8 +15,10 @@ def readCSVFile(path, delimiter=','):
             if header is None:
                 header = row
             else:
-                data.append(row)
+                booleanRow = [string == "True" for string in row]
+                data.append(booleanRow)
         return PatientsTableData(header, data)
 
 def getRules(data): # TODO: proper implementation
+    matrix = np.array(data)
     return ['a', 'b', 'c'] # should return list of strings that describe rules
