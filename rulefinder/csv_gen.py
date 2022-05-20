@@ -55,8 +55,3 @@ def makeCSVFile(path, rowsNumber, delimiter=','):
         for _ in range(rowsNumber):
             writer.writerow(diseases[random.randrange(0, len(diseases))].genRow())
         csvfile.close()
-
-makeCSVFile("test.csv", 20)
-
-
-

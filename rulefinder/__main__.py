@@ -1,8 +1,9 @@
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
             QPushButton, QFileDialog, QTableWidget, QTableWidgetItem, QHeaderView,
-            QLabel, QListWidget, QProgressBar)
+            QLabel, QListWidget, QProgressBar, QInputDialog)
 from PyQt6.QtCore import (Qt, QThreadPool, QRunnable, QObject, pyqtSignal, pyqtSlot)
 from .helpers import readCSVFile, getRules, PatientsTableData
+from .csv_gen import makeCSVFile
 
 APPLICATION_NAME = 'Rule Finder'
 
@@ -34,6 +35,9 @@ class MainWindow(QMainWindow):
 
         self.rules = []
         self.patientsTableData = PatientsTableData()
+        self.generateAction = self.menuBar().addAction("&Generate Data")
+        self.generateAction.triggered.connect(lambda : self.generateData_handle())
+
 
         centralWidget = QWidget()
         self.setCentralWidget(centralWidget)
@@ -54,7 +58,7 @@ class MainWindow(QMainWindow):
         self.progressBarLabel = QLabel()
         self.progressBar = QProgressBar()
 
-        self.progressBar.setMaximum(7)
+        self.progressBar.setMaximum(5)
 
         layout.addWidget(self.importFileButton)
 
@@ -67,6 +71,21 @@ class MainWindow(QMainWindow):
 
         layout.addWidget(self.progressBarLabel)
         layout.addWidget(self.progressBar)
+    
+    def generateData_handle(self):
+        i, okPressed = QInputDialog.getInt(self, "Generate patients data", "Number of patients:", 10, 1, 100000, 1)
+        if okPressed:
+            dialog = QFileDialog(self)
+
+            dialog.setFileMode(QFileDialog.FileMode.AnyFile)
+            dialog.setAcceptMode(QFileDialog.AcceptMode.AcceptSave)
+            dialog.setNameFilter("CSV file (*.csv)")
+
+            if dialog.exec():
+                filePath = dialog.selectedFiles()[0]
+                makeCSVFile(filePath, i)
+
+
 
     def importFileButton_handle(self):
         dialog = QFileDialog(self)
@@ -112,6 +131,7 @@ class MainWindow(QMainWindow):
 
     def updatepatientsTableDataTable(self):
         self.dataTable.clearSpans()
+        self.dataTable.setRowCount(0)
         if self.patientsTableData.header is not None and self.patientsTableData.data is not None: 
             self.dataTable.setColumnCount(len(self.patientsTableData.header))
 

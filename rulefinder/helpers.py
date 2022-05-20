@@ -1,5 +1,7 @@
 import csv
 import numpy as np
+from .indMatrix import indist
+from .johnson import johnson
 
 class PatientsTableData:
     def __init__(self, header=None, data=None):
@@ -21,32 +23,46 @@ def readCSVFile(path, delimiter=','):
         return PatientsTableData(header, data)
 
 
-def attrListToRule(attrList, patient_data, header):
+def attrListToRule(attrList, d, header):
     def attrEq(attr):
-        return f"{header[attr]} = {patient_data[attr]}"
-    return f"{' ∧ '.join(map(attrEq, attrList))} ⇒ {attrEq(patient_data[-1])}" 
+        return f"{header[attr]} = {d[attr]}"
+    return f"{' ∧ '.join(map(attrEq, attrList))} ⇒ {attrEq(-1)}" 
 
-def getRules(data, progress_callback): # TODO: proper implementation
+def getRules(data, progress_callback):
+    header = data.header
+    ruleList = []
+
+    def calculateAndAppendRule(patientIndisc, patient):
+        attrList = johnson(patientIndisc)
+        ruleList.append(attrListToRule(attrList, patient, header))
+
     progress_callback.emit(("Loading data...", 0))
-    patient_data = np.array(data.data)
+    patients_data = np.array(data.data)
     progress_callback.emit(("Removing discrepancies...", 1))
     # remove discrepencies
-    patient_data = lower_approximation(patient_data)
+    patients_data = lower_approximation(patients_data)
 
     progress_callback.emit(("Removing duplicates...", 2))
     # get unique patient data
-    patient_data = np.unique(patient_data, axis=0)
+    patients_data = np.unique(patients_data, axis=0)
 
-    # 
-    print(patient_data)
+    progress_callback.emit(("Calculating indiscernibility matrix...", 3))
+    indiscMat, trueArray, falseArray = indist(patients_data)
 
-    progress_callback.emit(("Removing d", 1))
+    if len(trueArray) != 0 and len(falseArray) != 0:
+        progress_callback.emit(("Calculating rules...", 4))
+        for i in range(len(trueArray)):
+            patientIndisc = [indiscMat[i]]
+            patient = patients_data[trueArray[i]]
+            calculateAndAppendRule(patientIndisc, patient)
+        
+        for i in range(len(falseArray)):
+            patientIndisc = [[x[0] for x in indiscMat]]
+            patient = patients_data[falseArray[i]]
+            calculateAndAppendRule(patientIndisc, patient)
 
-    
-    progress_callback.emit(("Removing a", 2))
-
-    progress_callback.emit(("Finished", 7))
-    return []
+    progress_callback.emit(("Finished", 5))
+    return list(set(ruleList))
 
 def separate_uncertain_rows(data):
     uncertain = []

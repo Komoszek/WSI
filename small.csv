@@ -1,3 +1,4 @@
-biegunka,ból brzucha,chory
-True,True,True
-True,True,False
+biegunka,ból brzucha,ból nogi,chory
+True,False,False,True
+True,True,False,True
+False,False,False,False
