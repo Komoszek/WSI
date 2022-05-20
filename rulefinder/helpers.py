@@ -1,4 +1,5 @@
 import csv
+from turtle import update
 
 class PatientsTableData:
     def __init__(self, header=None, data=None):
@@ -17,5 +18,12 @@ def readCSVFile(path, delimiter=','):
                 data.append(row)
         return PatientsTableData(header, data)
 
-def getRules(data): # TODO: proper implementation
+def getRules(data, progress_callback): # TODO: proper implementation
+    import time
+    progress_callback.emit(("Removing d", 1))
+    time.sleep(2)
+    progress_callback.emit(("Removing a", 2))
+    time.sleep(2)
+    progress_callback.emit(("Removing c", 7))
+
     return ['a', 'b', 'c'] # should return list of strings that describe rules
