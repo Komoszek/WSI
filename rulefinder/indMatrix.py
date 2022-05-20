@@ -24,12 +24,6 @@ def indist(decMatrix):
 
     return indMatrix, trueArray, falseArray
 
-decMatrix = np.array([  [True, True, True],
-                        [True, False, False],
-                        [False, False, False],
-                        [False, True, False]])
-print(indist(decMatrix))
-
 
 
 
