@@ -19,6 +19,12 @@ def readCSVFile(path, delimiter=','):
                 data.append(booleanRow)
         return PatientsTableData(header, data)
 
+
+def attrListToRule(attrList, patient_data, header):
+    def attrEq(attr):
+        return f"{header[attr]} = {patient_data[attr]}"
+    return f"{' ∧ '.join(map(attrEq, attrList))} ⇒ {attrEq(patient_data[-1])}" 
+
 def getRules(data, progress_callback): # TODO: proper implementation
     progress_callback.emit(("Loading data...", 0))
     patient_data = np.array(data)
@@ -33,6 +39,9 @@ def getRules(data, progress_callback): # TODO: proper implementation
     # 
 
     progress_callback.emit(("Removing d", 1))
+
+    
     progress_callback.emit(("Removing a", 2))
-    progress_callback.emit(("Removing c", 7))
+
+    progress_callback.emit(("Finished", 7))
     return ['a', 'b', 'c'] # should return list of strings that describe rules
