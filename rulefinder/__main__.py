@@ -121,7 +121,7 @@ class MainWindow(QMainWindow):
                 self.dataTable.insertRow(newRowIdx)
 
                 for i in range(self.dataTable.columnCount()):
-                    newCell = QTableWidgetItem(row[i])
+                    newCell = QTableWidgetItem(f"{row[i]}")
                     newCell.setFlags(newCell.flags() & ~Qt.ItemFlag.ItemIsEditable)
                     self.dataTable.setItem(newRowIdx, i, newCell)
                     
