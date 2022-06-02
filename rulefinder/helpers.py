@@ -57,7 +57,7 @@ def getRules(data, progress_callback):
             calculateAndAppendRule(patientIndisc, patient)
         
         for i in range(len(falseArray)):
-            patientIndisc = [[x[0] for x in indiscMat]]
+            patientIndisc = [[x[i] for x in indiscMat]]
             patient = patients_data[falseArray[i]]
             calculateAndAppendRule(patientIndisc, patient)
 
