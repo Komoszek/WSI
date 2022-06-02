@@ -33,7 +33,7 @@ def getRules(data, progress_callback):
     ruleList = []
 
     def calculateAndAppendRule(patientIndisc, patient):
-        attrList = johnson(patientIndisc)
+        attrList = sorted(johnson(patientIndisc))
         ruleList.append(attrListToRule(attrList, patient, header))
 
     progress_callback.emit(("Loading data...", 0))
